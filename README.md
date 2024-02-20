@@ -2,11 +2,19 @@
 ## Owner: Jeffrey Davis
 ## **Short Description**
 The user will be able to pick 1 of 3 monsters to battle another monster!
+## **Domain Model**
+![Domain Model](https://imgur.com/ZXTAka4.png)
 ## **ERD**
 ![ERD](https://imgur.com/ObE6o0g.png)
-## **Wireframe**
+## **Wireframes**
+****Main Menu****
+![Main Menu Wireframe](https://imgur.com/PCDZqhE.png)
 ****Battle Screen****
-![Wireframe Battle Screen](https://imgur.com/PWFcpVc.png)
+![Battle Screen Wireframe](https://imgur.com/PWFcpVc.png)
+****View All Monsters Screen****
+![View All Monsters Page Wireframe](https://imgur.com/xXCYnvG.png)
+****Monster Details Page****
+![Monster Details Page Wireframe](https://imgur.com/6uUYLDI.png)
 ## **React Components Tree**
 ![React Components Tree](https://imgur.com/NM04eQk.png)
 ## **MVP**
@@ -86,11 +94,12 @@ DELETE /moves/<int:id>
 ```
 
 ## **Stretch Goals**
-- Add an additional class `Item` that would have a many-to-many relationship with `User`
 - Incoprorate sound and/or animation with the moves
 - Make a free roam area
+- Make `type` have an affect on damage
+- Add an additional class `Item` that would have a many-to-many relationship with `User`
 
 ## **Timeline**
-- Wedesday (2/21): Have backend done by afternoon
-- Friday (2/23): Have MVP completed by end of day
+- Wednesday (2/21): Have backend done by afternoon
+- Monday (2/26): Have MVP completed by end of day
 - Week of 2/25: Work on stretch goals
