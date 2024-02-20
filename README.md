@@ -3,9 +3,9 @@
 ## **Short Description**
 The user will be able to pick 1 of 3 monsters to battle another monster!
 ## **Domain Model**
-![Domain Model](https://imgur.com/ZXTAka4.png)
+![Domain Model](https://imgur.com/fdvuG4M.png)
 ## **ERD**
-![ERD](https://imgur.com/ObE6o0g.png)
+![ERD](https://imgur.com/hoZ5QTF.png)
 ## **Wireframes**
 ****Main Menu****
 ![Main Menu Wireframe](https://imgur.com/PCDZqhE.png)
@@ -18,25 +18,26 @@ The user will be able to pick 1 of 3 monsters to battle another monster!
 ## **React Components Tree**
 ![React Components Tree](https://imgur.com/NM04eQk.png)
 ## **MVP**
-C - User, Battle\
-R - User, Battle\
+C - User, Battle, Monster\
+R - User, Battle, Monster, Move\
 U - User\
 D - User, Battle
 ## **Backend**
 ### Models
 - User
     - Relationships
-        - A `User` has many `Monsters` and a `Battle`
+        - A `User` has many `Monsters` and `Battles`
     - Validations
         - Must have `name` that is of type string, and `computer` that is of type boolean
 - Battle
     - Relationships
         - A `Battle` has many `Users`
     - Validations
-        - Must have `turn` of type integer
+        - Must have `user_turn` of type bool and `complete` of type bool
 - Monster
     - Relationships
-        - A `Monster` has many `Moves` and a `User`
+        - A `Monster` has many `Moves`
+        - A `Monster` belongs to a `User`
     - Validations
         - Must have a `name` of type string, `type` of type string, `health` of type integer, and an optional `nickname` of type string
 - Move
