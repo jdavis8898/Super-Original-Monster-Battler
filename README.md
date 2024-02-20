@@ -3,7 +3,13 @@
 ## **Short Description**
 The user will be able to pick 1 of 3 monsters to battle another monster!
 ## **ERD**
-![ERD](https://i.imgur.com/ObE6o0g.png)
+![ERD](https://imgur.com/ObE6o0g.png)
+## **Wireframe**
+****Battle Screen****
+![Wireframe Battle Screen](https://imgur.com/PWFcpVc.png)
+## **React Components Tree**
+![React Components Tree](https://imgur.com/NM04eQk.png)
+## **MVP**
 C - User, Battle\
 R - User, Battle\
 U - User\
