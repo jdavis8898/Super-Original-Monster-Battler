@@ -3,8 +3,7 @@
 ## **Short Description**
 The user will be able to pick 1 of 3 monsters to battle another monster!
 ## **ERD**
-![ERD](https://imgur.com/a/WJHbDfn.png)
-## **MVP**
+![ERD](https://i.imgur.com/ObE6o0g.png)
 C - User, Battle\
 R - User, Battle\
 U - User\
