@@ -521,7 +521,7 @@ class Monster_Moves(Resource):
         monster_moves = [monster_move.to_dict() for monster_move in Monster_Move.query.all()]
 
         response = make_response(
-            battle_users,
+            monster_moves,
             200
         )
 

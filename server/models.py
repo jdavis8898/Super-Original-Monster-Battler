@@ -17,7 +17,7 @@ class User(db.Model, SerializerMixin):
 
     # Relationsips
     monsters = db.relationship("Monster", back_populates = "user")
-    battle_users = db.relationship("Battle_User", back_populates = "user")
+    battles = db.relationship("Battle_User", back_populates = "user")
     
     # Serialization
     serialize_rules = ("-monsters.user", "-battle_users.user")
@@ -49,7 +49,7 @@ class Battle(db.Model, SerializerMixin):
     # Foreign Keys
 
     # Relationships
-    battle_users = db.relationship("Battle_User", back_populates = "battle")
+    users = db.relationship("Battle_User", back_populates = "battle")
     
     # Serialization
     serialize_rules = ("-battle_users.battle",)
@@ -154,8 +154,11 @@ class Battle_User(db.Model, SerializerMixin):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     # Relationships
-    battle = db.relationship("Battle", back_populates= "battle_users")
-    user = db.relationship("User", back_populates= "battle_users")
+    battle = db.relationship("Battle", back_populates= "users")
+    user = db.relationship("User", back_populates= "battles")
+
+    # Serialization
+    serialize_rules = ("-battle.users", "-user.battles")
 
     def __repr__(self):
         return f'<Battle_User {self.id}, {self.battle_id}, {self.user_id}>'
@@ -172,6 +175,9 @@ class Monster_Move(db.Model, SerializerMixin):
     # Relationships
     monster = db.relationship("Monster", back_populates= "moves")
     move = db.relationship("Move", back_populates= "monsters")
+
+    # Serialization
+    serialize_rules = ("-monster.moves", "-move.monsters")
 
     def __repr__(self):
         return f'<Monster_Move {self.id}, {self.monster_id}, {self.move_id}>'
