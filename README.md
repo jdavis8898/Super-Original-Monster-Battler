@@ -21,7 +21,7 @@ The user will be able to pick 1 of 3 monsters to battle another monster!
 C - User, Battle, Monster\
 R - User, Battle, Monster, Move\
 U - User\
-D - User, Battle
+D - User
 ## **Backend**
 ### Models
 - User
