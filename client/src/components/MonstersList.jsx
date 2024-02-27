@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import MonsterCard from "./MonsterCard"
 
-function MonstersList() {
+function MonstersList({ monsters }) {
 
     return (
         <div>
-
+            <ul className="all_monsters_card">
+                {monsters.map(monster => <MonsterCard key={monster.id} monster={monster} />)}
+            </ul>
         </div>
     )
 }

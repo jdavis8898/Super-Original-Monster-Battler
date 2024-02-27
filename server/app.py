@@ -11,61 +11,83 @@ from config import app, db, api
 # Add your model imports
 from models import db, User, Battle, Monster, Move, Battle_User, Monster_Move
 
+app.secret_key = b'\xbb\x98r|\x80i\xbf\xa1N\x9d,\xbf[\xec\xffN'
+
 # Views go here!
 
 @app.route('/')
 def index():
     return '<h1>Project Server</h1>'
 
-# @app.before_request
-# def check_if_logged_in():
-#     if not session["user_id"] and request.endpoint == "owner":
-#         response = make_response({"error": "Unauthorized"}, 401)
+@app.before_request
+def check_if_logged_in():
 
-#         return response
+    allowed_ep = ["login", "logout"]
 
-# class Login(Resource):
-#     def post(self):
-#         name = request.get_json()["name"]
-#         user = User.query.filter(User.name == name).first()
+    if not session.get("user_id") and request.endpoint not in allowed_ep:
+        response = make_response({"error": "Unauthorized"}, 401)
 
-#         session["user_id"] = user.id
+        return response
 
-#         response = make_response(
-#             user.to_dict(),
-#             200
-#         )
+class Login(Resource):
+    def post(self):
 
-#         return response
+        try:
+            username = request.get_json()["username"]
+            password = request.get_json()["password"]
 
-# api.add_resource(Login, "/login")
+            user = User.query.filter(User.username == request.get_json()["username"]).first()
 
-# class CheckSession(Resource):
-#     def get(self):
-#         user = User.query.filter(User.id == session.get("user_id")).first()
+            if user:
+                if user.authenticate(password):
 
-#         if user:
-#             return user.to_dict()
+                    response = make_response(
+                        session["user_id"].to_dict(),
+                        200
+                    )
+
+                    return response
+
+            response = make_response({"error": "Invalid username or password"}, 401)
+
+            return response
         
-#         else:
-#             response = make_response({"message": "401: Not Authorized"}, 401)
+        except ValueError:
 
-#             return response
+            response = make_response({"error": "Login failed"}, 400)
+            
+            return response
 
-# api.add_resource(CheckSession, "/check_session")
 
-# class Logout(Resource):
-#     def delete(self):
-#         session["user_id"] = None
+api.add_resource(Login, "/login", endpoint = "login")
 
-#         response = make_response(
-#             {},
-#             200
-#         )
+class CheckSession(Resource):
+    def get(self):
+        user = User.query.filter(User.id == session.get("user_id")).first()
 
-#         return response
+        if user:
 
-# api.add_resource(Logout, "/logout")
+            return user.to_dict()
+        
+        else:
+            response = make_response({"message": "401: Not Authorized"}, 401)
+
+            return response
+
+api.add_resource(CheckSession, "/check_session")
+
+class Logout(Resource):
+    def delete(self):
+        session["user_id"] = None
+
+        response = make_response(
+            {},
+            200
+        )
+
+        return response
+
+api.add_resource(Logout, "/logout", endpoint="logout")
 
 class Users(Resource):
     def get(self):
@@ -84,9 +106,10 @@ class Users(Resource):
 
         try:
             new_user = User(
-                name=form_data["name"],
+                username=form_data["name"],
                 computer=form_data["computer"]
             )
+            user.password_hash = form_data['password']
             
             db.session.add(new_user)
             db.session.commit()
@@ -247,7 +270,7 @@ api.add_resource(BattlesById, "/battles/<int:id>")
 
 class Monsters(Resource):
     def get(self):
-        monsters = [monster.to_dict() for monster in Monster.query.all()]
+        monsters = [monster.to_dict(rules=("-moves.monster_id",)) for monster in Monster.query.all()]
 
         response = make_response(
             monsters,
@@ -266,6 +289,7 @@ class Monsters(Resource):
                 nickname=form_data["nickname"],
                 type=form_data["type"],
                 health=form_data["health"],
+                image=form_data["image"],
                 user_id=form_data["user_id"]
             )
             
@@ -293,7 +317,7 @@ class MonstersById(Resource):
         
         else:
             response = make_response(
-                monster.to_dict(),
+                monster.to_dict(rules=("-moves.monster_id",)),
                 200
             )
         

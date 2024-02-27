@@ -1,8 +1,9 @@
 from sqlalchemy.orm import validates
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy.ext.hybrid import hybrid_property
 
-from config import db
+from config import db, metadata, bcrypt
 
 # Models go here!
 
@@ -10,8 +11,9 @@ class User(db.Model, SerializerMixin):
     __tablename__= "users"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
+    username = db.Column(db.String)
     computer = db.Column(db.Boolean)
+    _password_hash = db.Column(db.String)
 
     # Foreign Keys
 
@@ -23,8 +25,8 @@ class User(db.Model, SerializerMixin):
     serialize_rules = ("-monsters.user", "-battle_users.user")
 
     # Validations
-    @validates("name")
-    def validates_name(self, key, value):
+    @validates("username")
+    def validates_username(self, key, value):
         if not value:
             raise ValueError(f"{value} is not a valid {key}.")
         return value
@@ -34,9 +36,23 @@ class User(db.Model, SerializerMixin):
     #     if not type(value) == Bool:
     #         raise ValueError("computer must be of type boolean.")
     #     return value
+
+    @hybrid_property
+    def password_hash(self):    
+        raise Exception('Password hashes may not be viewed.')
+
+    @password_hash.setter
+    def password_hash(self, password):
+        password_hash = bcrypt.generate_password_hash(
+            password.encode('utf-8'))
+        self._password_hash = password_hash.decode('utf-8')
+
+    def authenticate(self, password):
+        return bcrypt.check_password_hash(
+            self._password_hash, password.encode('utf-8'))
     
     def __repr__(self):
-        return f'<User {self.id}, {self.name}, {self.computer}>'
+        return f'<User {self.id}, {self.username}, {self.computer}>'
 
 
 class Battle(db.Model, SerializerMixin):
@@ -73,6 +89,7 @@ class Monster(db.Model, SerializerMixin):
     nickname = db.Column(db.String, default=None)
     type = db.Column(db.String)
     health = db.Column(db.Integer)
+    image = db.Column(db.String)
 
     # Foreign Keys
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
