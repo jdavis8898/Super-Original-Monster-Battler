@@ -197,8 +197,7 @@ class Battles(Resource):
 
         try:
             new_battle = Battle(
-                user_turn=form_data["user_turn"],
-                computer=form_data["computer"]
+                complete=form_data["complete"]
             )
             
             db.session.add(new_battle)

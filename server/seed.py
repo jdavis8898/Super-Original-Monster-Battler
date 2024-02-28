@@ -68,6 +68,60 @@ def create_monsters():
     )
     monsters.append(m3)
 
+    m4 = Monster(
+        name="FireDino",
+        type="Fire",
+        health=20,
+        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzkOuDkFlUlmT6189ICgM40mKiY-uvj3khNQ&usqp=CAU",
+        user_id=1
+    )
+    monsters.append(m4)
+
+    m5 = Monster(
+        name="FireDino",
+        type="Fire",
+        health=20,
+        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzkOuDkFlUlmT6189ICgM40mKiY-uvj3khNQ&usqp=CAU",
+        user_id =20
+    )
+    monsters.append(m5)
+
+    m6 = Monster(
+        name="FireDino",
+        type="Fire",
+        health=20,
+        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzkOuDkFlUlmT6189ICgM40mKiY-uvj3khNQ&usqp=CAU",
+        user_id =19
+    )
+    monsters.append(m6)
+
+    m7 = Monster(
+        name="FireDino",
+        type="Fire",
+        health=20,
+        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzkOuDkFlUlmT6189ICgM40mKiY-uvj3khNQ&usqp=CAU",
+        user_id =18
+    )
+    monsters.append(m7)
+
+    m8 = Monster(
+        name="FireDino",
+        type="Fire",
+        health=20,
+        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzkOuDkFlUlmT6189ICgM40mKiY-uvj3khNQ&usqp=CAU",
+        user_id =17
+    )
+    monsters.append(m8)
+
+    m9 = Monster(
+        name="FireDino",
+        type="Fire",
+        health=20,
+        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzkOuDkFlUlmT6189ICgM40mKiY-uvj3khNQ&usqp=CAU",
+        user_id =16
+    )
+    monsters.append(m9)
+
     return monsters
 
 def create_moves():
@@ -116,6 +170,42 @@ def create_monster_moves():
         move_id=3
     )
     monster_moves.append(mm3)
+
+    mm4 = Monster_Move(
+        monster_id=4,
+        move_id=1
+    )
+    monster_moves.append(mm4)
+
+    mm5 = Monster_Move(
+        monster_id=5,
+        move_id=1
+    )
+    monster_moves.append(mm5)
+
+    mm6 = Monster_Move(
+        monster_id=6,
+        move_id=1
+    )
+    monster_moves.append(mm6)
+
+    mm7 = Monster_Move(
+        monster_id=7,
+        move_id=1
+    )
+    monster_moves.append(mm7)
+
+    mm8 = Monster_Move(
+        monster_id=8,
+        move_id=1
+    )
+    monster_moves.append(mm8)
+
+    mm9 = Monster_Move(
+        monster_id=9,
+        move_id=1
+    )
+    monster_moves.append(mm9)
 
     return monster_moves
 

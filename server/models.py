@@ -59,7 +59,6 @@ class Battle(db.Model, SerializerMixin):
     __tablename__ = "battles"
 
     id = db.Column(db.Integer, primary_key=True)
-    user_turn = db.Column(db.Boolean)
     complete = db.Column(db.Boolean)
 
     # Foreign Keys
