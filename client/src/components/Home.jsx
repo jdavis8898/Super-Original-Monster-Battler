@@ -4,6 +4,28 @@ import Login from "./Login"
 import Logout from "./Logout"
 
 function Home({ user, onLogin, onLogout }) {
+    const [battle, setBattle] = useState({})
+
+    function handleClick() {
+        const new_battle =
+        {
+            complete: false
+        }
+
+        fetch("/battles", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(new_battle)
+        })
+            .then(resp => resp.json())
+            .then(newBattleData => setBattle(newBattleData))
+            .catch(error => {
+                console.error("Error creating new battle", error)
+            })
+
+    }
 
     return (
         <>
@@ -13,7 +35,8 @@ function Home({ user, onLogin, onLogout }) {
                     <h1>Monster Battler</h1>
                     <div className="menu">
                         <Link
-                            to="/battle">
+                            to="/battles"
+                            onClick={handleClick}>
                             <p>Start Battle</p>
                         </Link>
                         <Link
@@ -26,12 +49,13 @@ function Home({ user, onLogin, onLogout }) {
                         </Link>
                         <Logout onLogout={onLogout} />
                     </div>
-                </div>
+                </div >
             ) : (
                 <div>
                     <Login onLogin={onLogin} />
                 </div>
-            )}
+            )
+            }
         </>
     )
 }

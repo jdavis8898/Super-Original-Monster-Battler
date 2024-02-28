@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import Button from 'react-bootstrap/Button'
+import Button from "react-bootstrap/Button"
 import MoveDetails from "./MoveDetails"
 
 function MonsterDetails({ user, updateUser }) {
@@ -13,13 +13,12 @@ function MonsterDetails({ user, updateUser }) {
             .then(monsterData => setMonster(monsterData))
     }, [id])
 
-    function handleClick(monster) {
-        console.log(user)
-        console.log(user.monsters)
-        console.log(user.monsters.length)
-        if (user.monsters.length < 3) {
+    // function updateMonsterMoves(monster, newMon) {
 
-            console.log("adding monster")
+    // }
+
+    function handleClick(monster) {
+        if (user.monsters.length < 3) {
 
             const new_monster =
             {
@@ -39,11 +38,27 @@ function MonsterDetails({ user, updateUser }) {
                 body: JSON.stringify(new_monster)
             })
                 .then(resp => resp.json())
+                .then(newMonData => {
+                    const new_mm =
+                    {
+                        monster_id: newMonData.id,
+                        move_id: monster.moves[0].id
+                    }
+                    fetch("/monster_moves", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(new_mm)
+                    })
+                        .then(resp => resp.json())
+
+                })
                 .catch(error => {
                     console.error("Error adding monster to team", error)
                 })
-            setMonster(new_monster)
             updateUser(user)
+
         }
 
         else {

@@ -8,9 +8,11 @@ import MonstersPage from "./MonstersPage"
 import ProfilePage from "./ProfilePage"
 import MonsterDetails from "./MonsterDetails"
 import Signup from "./Signup"
+import BattleScreen from "./BattleScreen"
 
 function Main() {
     const [user, setUser] = useState(null)
+    const [opponent, setOpponent] = useState({})
 
     useEffect(() => {
         fetch('/check_session')
@@ -22,6 +24,25 @@ function Main() {
             })
             .then((user) => setUser(user))
             .catch(() => setUser(null))
+    }, [])
+
+    function filterComputer(u) {
+        if (u.computer === true) {
+            return u
+        }
+    }
+
+    function randomInt(x) {
+        return Math.floor(Math.random() * x)
+    }
+
+    useEffect(() => {
+        fetch("/users")
+            .then(resp => resp.json())
+            .then(usersData => {
+                const filteredUsers = usersData.filter(u => filterComputer(u))
+                setOpponent(filteredUsers[randomInt(filteredUsers.length)])
+            })
     }, [])
 
     function onLogin(user) {
@@ -49,8 +70,12 @@ function Main() {
                     element={<Signup />}
                 />
                 <Route
-                    path="/battle"
-                    element={<BattlePage user={user} />}
+                    path="/battles"
+                    element={<BattlePage user={user} opponent={opponent} />}
+                />
+                <Route
+                    path="/battles/:id"
+                    element={<BattleScreen user={user} />}
                 />
                 <Route
                     path="/monsters"
