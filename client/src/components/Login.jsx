@@ -17,8 +17,8 @@ function Login({ onLogin }) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ username, password }),
-            });
+                body: JSON.stringify({ username, password })
+            })
 
             if (resp.ok) {
                 const user = await resp.json()
@@ -31,6 +31,7 @@ function Login({ onLogin }) {
             if (error.message === "Invalid username or password") {
                 window.alert("Invalid username or password. Please try again.")
                 setUsername("")
+                setPassword("")
             }
         }
     }

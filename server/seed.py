@@ -20,6 +20,7 @@ def create_users():
             username=fake.first_name(),
             computer=False
         )
+        u.password_hash = "ppp"
         users.append(u)
     
     for _ in range(5):

@@ -7,6 +7,7 @@ import BattlePage from "./BattlePage"
 import MonstersPage from "./MonstersPage"
 import ProfilePage from "./ProfilePage"
 import MonsterDetails from "./MonsterDetails"
+import Signup from "./Signup"
 
 function Main() {
     const [user, setUser] = useState(null)
@@ -44,8 +45,12 @@ function Main() {
                     element={<Login onLogin={onLogin} />}
                 />
                 <Route
+                    path="/signup"
+                    element={<Signup />}
+                />
+                <Route
                     path="/battle"
-                    element={<BattlePage />}
+                    element={<BattlePage user={user} />}
                 />
                 <Route
                     path="/monsters"
@@ -53,7 +58,7 @@ function Main() {
                 />
                 <Route
                     path="/monsters/:id"
-                    element={<MonsterDetails />}
+                    element={<MonsterDetails user={user} updateUser={onLogin} />}
                 />
                 <Route
                     path="/profile"

@@ -22,7 +22,7 @@ def index():
 @app.before_request
 def check_if_logged_in():
 
-    allowed_ep = ["login", "logout"]
+    allowed_ep = ["login", "logout", "users"]
 
     if not session.get("user_id") and request.endpoint not in allowed_ep:
         response = make_response({"error": "Unauthorized"}, 401)
@@ -36,13 +36,14 @@ class Login(Resource):
             username = request.get_json()["username"]
             password = request.get_json()["password"]
 
-            user = User.query.filter(User.username == request.get_json()["username"]).first()
+            user = User.query.filter(User.username == username).first()
 
             if user:
                 if user.authenticate(password):
+                    session['user_id'] = user.id
 
                     response = make_response(
-                        session["user_id"].to_dict(),
+                        user.to_dict(),
                         200
                     )
 
@@ -106,10 +107,10 @@ class Users(Resource):
 
         try:
             new_user = User(
-                username=form_data["name"],
+                username=form_data["username"],
                 computer=form_data["computer"]
             )
-            user.password_hash = form_data['password']
+            new_user.password_hash = form_data['password']
             
             db.session.add(new_user)
             db.session.commit()
@@ -121,7 +122,7 @@ class Users(Resource):
         
         return response
 
-api.add_resource(Users, "/users")
+api.add_resource(Users, "/users", endpoint = "users")
 
 class UsersById(Resource):
     def get(self, id):
