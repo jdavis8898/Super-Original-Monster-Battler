@@ -4,14 +4,14 @@ import ResultsScreen from "./ResultsScreen"
 import useSound from "use-sound"
 import TestSound from "./sounds/TestSound.wav"
 
-function BattlePage({ user, opponent, battle, updateBattle }) {
-    const monster = user.monsters[0]
+function BattlePage({ user, opponent, battle, updateBattle, monster }) {
+    // const monster = user.monsters[0]
     const oppMon = opponent.monsters[0]
 
     const [health, setHealth] = useState(monster.health)
     const [oppHealth, setOppHealth] = useState(oppMon.health)
 
-    const [playSound, { stop }] = useSound(TestSound, { playbackRate: 4, volume: .5 })
+    const [playSound, { stop }] = useSound(TestSound)
 
 
     function handleClick(monster) {

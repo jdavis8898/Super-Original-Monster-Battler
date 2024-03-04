@@ -13,6 +13,7 @@ function Main() {
     const [user, setUser] = useState(null)
     const [opponent, setOpponent] = useState({})
     const [battle, setBattle] = useState({})
+    const [monster, setMonster] = useState({})
 
     useEffect(() => {
         fetch('/check_session')
@@ -112,13 +113,17 @@ function Main() {
             .then(updatedUser => setUser(updatedUser))
     }
 
+    function handleMonsterSelect(monster) {
+        setMonster(monster)
+    }
+
     return (
         <div>
             <NavBar />
             <Routes>
                 <Route
                     path="/"
-                    element={<Home user={user} onLogin={onLogin} onLogout={onLogout} addBattle={createBattle} />}
+                    element={<Home user={user} onLogin={onLogin} onLogout={onLogout} addBattle={createBattle} handleMonsterSelect={handleMonsterSelect} />}
                 />
                 <Route
                     path="/login"
@@ -130,7 +135,7 @@ function Main() {
                 />
                 <Route
                     path="/battles"
-                    element={<BattlePage user={user} opponent={opponent} battle={battle} updateBattle={completeBattle} />}
+                    element={<BattlePage user={user} opponent={opponent} battle={battle} updateBattle={completeBattle} monster={monster} />}
                 />
                 <Route
                     path="/monsters"
