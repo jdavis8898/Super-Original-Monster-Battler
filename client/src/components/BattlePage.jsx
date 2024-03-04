@@ -5,7 +5,6 @@ import useSound from "use-sound"
 import TestSound from "./sounds/TestSound.wav"
 
 function BattlePage({ user, opponent, battle, updateBattle, monster }) {
-    // const monster = user.monsters[0]
     const oppMon = opponent.monsters[0]
 
     const [health, setHealth] = useState(monster.health)

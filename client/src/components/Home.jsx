@@ -13,10 +13,6 @@ function Home({ user, onLogin, onLogout, addBattle, handleMonsterSelect }) {
         addBattle()
     }
 
-    function handleMonster(monster) {
-        handleMonsterSelect(monster)
-    }
-
     return (
         <Container>
             {user ? (
@@ -38,7 +34,7 @@ function Home({ user, onLogin, onLogout, addBattle, handleMonsterSelect }) {
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <MonsterPick monsters={user.monsters} handleMonstetSelect={handleMonster} />
+                                        <MonsterPick monsters={user.monsters} handleMonsterSelect={handleMonsterSelect} />
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -46,11 +42,6 @@ function Home({ user, onLogin, onLogout, addBattle, handleMonsterSelect }) {
                                 </div>
                             </div>
                         </div>
-                        <Link
-                            to="/battles"
-                            onClick={handleClick}>
-                            <p>Start Battle</p>
-                        </Link>
                         <Link
                             to="/monsters">
                             <p>View All Monsters</p>

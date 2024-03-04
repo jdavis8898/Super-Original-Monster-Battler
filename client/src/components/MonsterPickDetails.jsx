@@ -12,7 +12,7 @@ function MonsterPickDetails({ monster, handleMonsterSelect }) {
             <li className="card">
                 <div className="card_content">
                     <Link to={`/battles`}>
-                        <img src={monster.image} data-bs-dismiss="modal" onClick={handleClick} />
+                        <img src={monster.image} data-bs-dismiss="modal" onClick={handleClick(monster)} />
                     </Link>
                     <p>{monster.type}</p>
                 </div>
