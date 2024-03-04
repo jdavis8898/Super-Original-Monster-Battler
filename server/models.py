@@ -12,6 +12,7 @@ class User(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
+    
     computer = db.Column(db.Boolean)
     _password_hash = db.Column(db.String)
 

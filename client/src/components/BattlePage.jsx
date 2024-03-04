@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react"
-import { Switch, Route } from "react-router-dom"
+import React, { useState } from "react"
 import Button from "react-bootstrap/Button"
-import BattleScreen from "./BattleScreen"
+import ResultsScreen from "./ResultsScreen"
 
-function BattlePage({ user, opponent }) {
+function BattlePage({ user, opponent, battle, updateBattle }) {
     const monster = user.monsters[0]
     const oppMon = opponent.monsters[0]
 
@@ -11,32 +10,53 @@ function BattlePage({ user, opponent }) {
     const [oppHealth, setOppHealth] = useState(oppMon.health)
 
     function handleClick(monster) {
-        // setHealth(health - monster.moves[0]['damage'])
-        // setOppHealth(oppHealth - monster.moves[0]['damage'])
+
+        const new_health = parseInt(health) - parseInt(oppMon.moves[0].move.damage)
+        const new_opp_health = parseInt(oppHealth) - parseInt(monster.moves[0].move.damage)
+
+        let playerChanceToHit = Math.floor(Math.random() * 100)
+        let oppChanceToHit = Math.floor(Math.random() * 100)
+        console.log("Player % to hit, need 60 or higher")
+        console.log(playerChanceToHit)
+        console.log("Computer % to hit, need 60 or higher")
+        console.log(oppChanceToHit)
+
+
+        if (playerChanceToHit >= 60) {
+            setOppHealth(new_opp_health)
+        }
+
+        if (oppChanceToHit >= 60) {
+            setHealth(new_health)
+        }
+
+        if ((new_health <= 0) || (new_opp_health <= 0)) {
+            updateBattle(battle.id)
+        }
     }
 
-
-
-
-
-
-    console.log(monster.moves)
-
     return (
-        <div>
-            <h3>{user.username} VS {opponent.username}</h3>
-            <p>{monster.name} VS {oppMon.name}</p>
-            <div className="player">
-                <img src={monster.image} />
-                <p>{health}</p>
-                <Button variant="primary" type="button" onClick={() => handleClick(monster)}>Attack</Button>
-            </div>
-            <div className="opponent">
-                <img src={oppMon.image} />
-                <p>{oppHealth}</p>
-            </div>
-            {/* <BattleScreen user={user} opponent={opponent} /> */}
-        </div>
+        <>
+            {health > 0 && oppHealth > 0 ? (
+                <div>
+                    <h3>{user.username} VS {opponent.username}</h3>
+                    <p>{monster.name} VS {oppMon.name}</p>
+                    <div className="player">
+                        <img src={monster.image} />
+                        <p>{health}</p>
+                        <Button variant="primary" type="button" onClick={() => handleClick(monster)}>Attack</Button>
+                    </div>
+                    <div className="opponent">
+                        <img src={oppMon.image} />
+                        <p>{oppHealth}</p>
+                    </div>
+                </div>
+            ) : (
+                <div>
+                    <ResultsScreen user={user} opponent={opponent} monster={monster} oppMon={oppMon} health={health} oppHealth={oppHealth} />
+                </div>
+            )}
+        </>
     )
 }
 

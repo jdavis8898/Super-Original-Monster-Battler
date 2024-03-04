@@ -58,7 +58,6 @@ function MonsterDetails({ user, updateUser }) {
                     console.error("Error adding monster to team", error)
                 })
             updateUser(user)
-
         }
 
         else {

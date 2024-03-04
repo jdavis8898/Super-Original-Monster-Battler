@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
+import Container from "react-bootstrap/Container"
 import { Link } from "react-router-dom"
 
 function Login({ onLogin }) {
@@ -41,14 +41,14 @@ function Login({ onLogin }) {
             <Form onSubmit={handleSubmit}>
                 <Form.Label as="h2">Sign in</Form.Label>
 
-                <Form.Group className="mb-3" controlId="formGroupEmail">
-                    <Form.Label>Username</Form.Label>
+                <Form.Group className="log" controlId="formUsername">
+                    <Form.Label>Username: </Form.Label>
                     <Form.Control type="text" placeholder="Enter username" value={username}
                         onChange={e => setUsername(e.target.value)} />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
+                <Form.Group className="log" controlId="formPassword">
+                    <Form.Label>Password: </Form.Label>
                     <Form.Control type="password" placeholder="Enter password" value={password}
                         onChange={e => setPassword(e.target.value)} />
                 </Form.Group>

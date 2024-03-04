@@ -1,12 +1,54 @@
-import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
+import Button from "react-bootstrap/Button"
+import Form from "react-bootstrap/Form"
 import MonstersList from "./MonstersList"
+import MonsterCard from "./MonsterCard"
 
-function ProfilePage() {
+function ProfilePage({ user, deleteUser, updateUsername }) {
+    const [username, setUsername] = useState("")
+    const [editing, setEditing] = useState(false)
+    const [monsters, setMonsters] = useState(user.monsters)
+
+    function handleUsernameEdit() {
+        setEditing(!editing)
+    }
+
+    function handleSubmit() {
+        updateUsername(user.id, username)
+        setEditing(!editing)
+    }
+
+    function handleClick() {
+        deleteUser(user.id)
+    }
 
     return (
         <div>
+            <h1>Welcome To Your Profile Page {user.username}!</h1>
 
+            {editing ? (
+                <Form onSubmit={handleSubmit}>
+                    <Form.Label as="h4">Update Username</Form.Label>
+
+                    <Form.Group className="" controlId="formUpdateUsername">
+                        <Form.Label>New Username: </Form.Label>
+                        <Form.Control type="text" placeholder="Enter new username" value={username}
+                            onChange={e => setUsername(e.target.value)} />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">Submit</Button>
+                </Form>
+            ) : (
+                <div>
+                    {console.log(monsters)}
+                    <h3>Your Team!</h3>
+                    <MonstersList monsters={monsters} />
+                    <Button variant="primary" type="button" onClick={() => handleUsernameEdit()}>Update Username</Button>
+                    <Link to="/login">
+                        <Button variant="primary" type="button" onClick={() => handleClick()}>Delete Account</Button>
+                    </Link>
+                </div>
+            )}
         </div>
     )
 }

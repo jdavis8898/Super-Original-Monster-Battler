@@ -50,7 +50,7 @@ function Signup() {
                 <Form.Label as="h2">Signup</Form.Label>
 
                 <Form.Group className="mb-3" controlId="formGroupEmail">
-                    <Form.Label>Username</Form.Label>
+                    <Form.Label>Desired Username: </Form.Label>
                     <Form.Control type="text" placeholder="Enter username"
                         onChange={e => setUsername(e.target.value)}
                         value={username}
@@ -58,7 +58,7 @@ function Signup() {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Desired Password: </Form.Label>
                     <Form.Control type="password" placeholder="Enter password"
                         onChange={e => setPassword(e.target.value)}
                         value={password}

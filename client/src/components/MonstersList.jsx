@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Route } from "react-router-dom";
+import React from "react"
 import MonsterCard from "./MonsterCard"
 
 function MonstersList({ monsters }) {

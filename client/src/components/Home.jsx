@@ -1,30 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { Link, Routes, Route } from "react-router-dom"
+import { Link } from "react-router-dom"
 import Login from "./Login"
 import Logout from "./Logout"
 
-function Home({ user, onLogin, onLogout }) {
-    const [battle, setBattle] = useState({})
+function Home({ user, onLogin, onLogout, addBattle }) {
 
     function handleClick() {
-        const new_battle =
-        {
-            complete: false
-        }
-
-        fetch("/battles", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(new_battle)
-        })
-            .then(resp => resp.json())
-            .then(newBattleData => setBattle(newBattleData))
-            .catch(error => {
-                console.error("Error creating new battle", error)
-            })
-
+        addBattle()
     }
 
     return (
@@ -54,8 +36,7 @@ function Home({ user, onLogin, onLogout }) {
                 <div>
                     <Login onLogin={onLogin} />
                 </div>
-            )
-            }
+            )}
         </>
     )
 }

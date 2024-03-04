@@ -8,11 +8,11 @@ import MonstersPage from "./MonstersPage"
 import ProfilePage from "./ProfilePage"
 import MonsterDetails from "./MonsterDetails"
 import Signup from "./Signup"
-import BattleScreen from "./BattleScreen"
 
 function Main() {
     const [user, setUser] = useState(null)
     const [opponent, setOpponent] = useState({})
+    const [battle, setBattle] = useState({})
 
     useEffect(() => {
         fetch('/check_session')
@@ -53,13 +53,72 @@ function Main() {
         setUser(null)
     }
 
+    function createBattle() {
+        const new_battle =
+        {
+            complete: false
+        }
+
+        fetch("/battles", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(new_battle)
+        })
+            .then(resp => resp.json())
+            .then(newBattleData => setBattle(newBattleData))
+            .catch(error => {
+                console.error("Error creating new battle", error)
+            })
+    }
+
+    function completeBattle(id) {
+
+        fetch(`/battles/${id}`,
+            {
+                method: "PATCH",
+                headers:
+                {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ complete: true })
+            })
+            .then(resp => resp.json())
+    }
+
+    function deleteUser(id) {
+        fetch(`/users/${id}`, {
+            method: "DELETE"
+        }).then(resp => resp.json())
+
+        fetch("/logout", {
+            method: "DELETE",
+        }).then(() => onLogout())
+
+    }
+
+    function updateUsername(id, username) {
+        fetch(`/users/${id}`,
+            {
+                method: "PATCH",
+                headers:
+                {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username: username })
+            })
+            .then(resp => resp.json())
+            .then(updatedUser => setUser(updatedUser))
+    }
+
     return (
         <div>
             <NavBar />
             <Routes>
                 <Route
                     path="/"
-                    element={<Home user={user} onLogin={onLogin} onLogout={onLogout} />}
+                    element={<Home user={user} onLogin={onLogin} onLogout={onLogout} addBattle={createBattle} />}
                 />
                 <Route
                     path="/login"
@@ -71,11 +130,7 @@ function Main() {
                 />
                 <Route
                     path="/battles"
-                    element={<BattlePage user={user} opponent={opponent} />}
-                />
-                <Route
-                    path="/battles/:id"
-                    element={<BattleScreen user={user} />}
+                    element={<BattlePage user={user} opponent={opponent} battle={battle} updateBattle={completeBattle} />}
                 />
                 <Route
                     path="/monsters"
@@ -87,7 +142,7 @@ function Main() {
                 />
                 <Route
                     path="/profile"
-                    element={<ProfilePage user={user} />}
+                    element={<ProfilePage user={user} deleteUser={deleteUser} updateUsername={updateUsername} />}
                 />
             </Routes>
         </div>
