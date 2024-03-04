@@ -11,7 +11,7 @@ function BattlePage({ user, opponent, battle, updateBattle }) {
     const [health, setHealth] = useState(monster.health)
     const [oppHealth, setOppHealth] = useState(oppMon.health)
 
-    const [playSound] = useSound(TestSound)
+    const [playSound, { stop }] = useSound(TestSound, { playbackRate: 4, volume: .5 })
 
 
     function handleClick(monster) {
@@ -46,7 +46,7 @@ function BattlePage({ user, opponent, battle, updateBattle }) {
                 <div>
                     <h3>{user.username} VS {opponent.username}</h3>
 
-                    <Button variant="primary" type="button" onClick={playSound}>Sound</Button>
+                    <Button type="button" onMouseEnter={() => playSound()} onMouseLeave={() => stop()}>Sound</Button>
 
                     <p>{monster.name} VS {oppMon.name}</p>
                     <div className="player">
