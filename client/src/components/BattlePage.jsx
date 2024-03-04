@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import Button from "react-bootstrap/Button"
 import ResultsScreen from "./ResultsScreen"
+import useSound from "use-sound"
+import TestSound from "./sounds/TestSound.wav"
 
 function BattlePage({ user, opponent, battle, updateBattle }) {
     const monster = user.monsters[0]
@@ -8,6 +10,9 @@ function BattlePage({ user, opponent, battle, updateBattle }) {
 
     const [health, setHealth] = useState(monster.health)
     const [oppHealth, setOppHealth] = useState(oppMon.health)
+
+    const [playSound] = useSound(TestSound)
+
 
     function handleClick(monster) {
 
@@ -40,6 +45,9 @@ function BattlePage({ user, opponent, battle, updateBattle }) {
             {health > 0 && oppHealth > 0 ? (
                 <div>
                     <h3>{user.username} VS {opponent.username}</h3>
+
+                    <Button variant="primary" type="button" onClick={playSound}>Sound</Button>
+
                     <p>{monster.name} VS {oppMon.name}</p>
                     <div className="player">
                         <img src={monster.image} />
