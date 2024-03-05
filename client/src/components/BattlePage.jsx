@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, Suspense } from "react"
 import Button from "react-bootstrap/Button"
 import useSound from "use-sound"
 import ResultsScreen from "./ResultsScreen"
@@ -59,9 +59,11 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
                     <div className="player">
                         <img src={monster.image} />
                         <p>{health}</p>
-                        <ul className="user_moves">
-                            {monster.moves.map(move => <MoveCard key={move.id} move={move} handleMoveSelect={handleMoveSelect} />)}
-                        </ul>
+                        <Suspense fallback={<p>loading...</p>}>
+                            <ul className="user_moves">
+                                {/* {monster.moves.map(move => <MoveCard key={move.id} move={move} handleMoveSelect={handleMoveSelect} />)} */}
+                            </ul>
+                        </Suspense>
                         {/* <Button variant="primary" type="button" onClick={() => handleClick(monster)}>Attack</Button> */}
                     </div>
                     <div className="opponent">

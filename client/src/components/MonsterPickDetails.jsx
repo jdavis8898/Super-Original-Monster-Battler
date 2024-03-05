@@ -1,10 +1,11 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-function MonsterPickDetails({ monster, handleMonsterSelect }) {
+function MonsterPickDetails({ monster, handleMonsterSelect, makeOpp }) {
 
     function handleClick(monster) {
         handleMonsterSelect(monster)
+        makeOpp()
     }
 
     return (

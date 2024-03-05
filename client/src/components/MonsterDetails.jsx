@@ -30,6 +30,8 @@ function MonsterDetails({ user, updateUser }) {
                 user_id: user.id,
                 nickname: monster.nickname
             }
+
+            console.log(new_monster)
             fetch("/monsters", {
                 method: "POST",
                 headers: {
@@ -74,7 +76,7 @@ function MonsterDetails({ user, updateUser }) {
                 <p>Type: {monster.type}</p>
                 <p>Moves:</p>
                 <ul>
-                    {/* {monster.moves.map(move => <MoveDetails key={move.id} move={move} />)} */}
+                    {monster.moves.map(move => <MoveDetails key={move.id} move={move} />)}
                 </ul>
                 <Button variant="primary" type="button" onClick={() => handleClick(monster)}>Add to Team</Button>
             </div>

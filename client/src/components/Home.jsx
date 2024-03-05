@@ -7,7 +7,7 @@ import Login from "./Login"
 import Logout from "./Logout"
 import MonsterPick from "./MonsterPick"
 
-function Home({ user, onLogin, onLogout, handleMonsterSelect }) {
+function Home({ user, onLogin, onLogout, handleMonsterSelect, makeOpp }) {
 
     return (
         <Container>
@@ -30,7 +30,7 @@ function Home({ user, onLogin, onLogout, handleMonsterSelect }) {
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <MonsterPick monsters={user.monsters} handleMonsterSelect={handleMonsterSelect} />
+                                        <MonsterPick monsters={user.monsters} handleMonsterSelect={handleMonsterSelect} makeOpp={makeOpp} />
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

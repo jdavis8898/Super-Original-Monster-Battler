@@ -11,7 +11,8 @@ function MoveCard({ move, handleMoveSelect }) {
     return (
         <Container>
             <li className="move_card">
-                <h7>{move.move.name} </h7>
+                console.log(move)
+                <h3>{move.move.name} </h3>
                 <Button variant="primary" type="button" onClick={() => handleClick()}>Attack</Button>
             </li>
         </Container>
