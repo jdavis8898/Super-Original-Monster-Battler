@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button"
 import useSound from "use-sound"
 import ResultsScreen from "./ResultsScreen"
 import MoveCard from "./MoveCard"
-import TestSound from "./sounds/TestSound.wav"
+import SOMB_Moves from "../sounds/SOMB_Moves.mp3"
 
 function BattlePage({ user, opponent, battle, updateBattle, monster }) {
     const oppMon = opponent.monsters[0]
@@ -11,7 +11,15 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
     const [health, setHealth] = useState(monster.health)
     const [oppHealth, setOppHealth] = useState(oppMon.health)
 
-    const [playSound, { stop }] = useSound(TestSound)
+    const [playSound] = useSound(SOMB_Moves, {
+        Interrupt: true,
+        sprite: {
+            "Fire Throw": [1000, 3000],
+            "Water Throw": [5000, 2000],
+            "Leaf Throw": [9000, 2000],
+            "Cut": [13000, 2000]
+        }
+    })
 
     function handleMoveSelect(move) {
         console.log(oppMon)
@@ -37,7 +45,7 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
 
 
         if (playerChanceToHitUpdate >= 60) {
-            playSound()
+            playSound({ id: move.move.name })
             setOppHealth(new_opp_health)
         }
 
