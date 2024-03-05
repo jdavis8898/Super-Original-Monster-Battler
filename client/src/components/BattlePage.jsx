@@ -13,26 +13,35 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
 
     const [playSound, { stop }] = useSound(TestSound)
 
-    function handleClick(monster) {
+    function handleMoveSelect(move) {
+        console.log(oppMon)
+        let randomNum = Math.floor(Math.random() * 2)
+        const oppMonMove = oppMon.moves[randomNum]
+        console.log(oppMonMove)
 
-        const new_health = parseInt(health) - parseInt(oppMon.moves[0].move.damage)
-        const new_opp_health = parseInt(oppHealth) - parseInt(monster.moves[0].move.damage)
+        const new_health = parseInt(health) - parseInt(oppMonMove.move.damage)
+        const new_opp_health = parseInt(oppHealth) - parseInt(move.move.damage)
 
-        let playerChanceToHit = Math.floor(Math.random() * 100)
-        let oppChanceToHit = Math.floor(Math.random() * 100)
-        // console.log("Player % to hit, need 60 or higher")
-        // console.log(playerChanceToHit)
-        // console.log("Computer % to hit, need 60 or higher")
-        // console.log(oppChanceToHit)
+        let playerChanceToHit = (Math.floor(Math.random() * 100))
+        let oppChanceToHit = (Math.floor(Math.random() * 100))
+        let playerChanceToHitUpdate = playerChanceToHit + (move.move.accuracy * 60)
+        let oppChanceToHitUpdate = oppChanceToHit + (oppMonMove.move.accuracy * 60)
+        console.log("Player % to hit, need 60 or higher")
+        console.log(playerChanceToHit)
+        console.log(move.move.accuracy)
+        console.log(playerChanceToHitUpdate)
+        console.log("Computer % to hit, need 60 or higher")
+        console.log(oppChanceToHit)
+        console.log(oppMonMove.move.accuracy)
+        console.log(oppChanceToHitUpdate)
 
 
-        if (playerChanceToHit >= 60) {
+        if (playerChanceToHitUpdate >= 60) {
             playSound()
             setOppHealth(new_opp_health)
         }
 
-        if (oppChanceToHit >= 60) {
-            playSound()
+        if (oppChanceToHitUpdate >= 60) {
             setHealth(new_health)
         }
 
@@ -51,10 +60,9 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
                         <img src={monster.image} />
                         <p>{health}</p>
                         <ul className="user_moves">
-                            {console.log(monster.moves)}
-                            {/* {monster.moves.map(move => <MoveCard key={move.id} move={move} />)} */}
+                            {monster.moves.map(move => <MoveCard key={move.id} move={move} handleMoveSelect={handleMoveSelect} />)}
                         </ul>
-                        <Button variant="primary" type="button" onClick={() => handleClick(monster)}>Attack</Button>
+                        {/* <Button variant="primary" type="button" onClick={() => handleClick(monster)}>Attack</Button> */}
                     </div>
                     <div className="opponent">
                         <img src={oppMon.image} />
