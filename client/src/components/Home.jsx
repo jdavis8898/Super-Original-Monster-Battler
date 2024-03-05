@@ -7,11 +7,7 @@ import Login from "./Login"
 import Logout from "./Logout"
 import MonsterPick from "./MonsterPick"
 
-function Home({ user, onLogin, onLogout, addBattle, handleMonsterSelect }) {
-
-    function handleClick() {
-        addBattle()
-    }
+function Home({ user, onLogin, onLogout, handleMonsterSelect }) {
 
     return (
         <Container>

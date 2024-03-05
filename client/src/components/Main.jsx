@@ -12,7 +12,6 @@ import Signup from "./Signup"
 function Main() {
     const [user, setUser] = useState(null)
     const [opponent, setOpponent] = useState({})
-    const [battle, setBattle] = useState({})
     const [monster, setMonster] = useState({})
 
     useEffect(() => {
@@ -68,7 +67,6 @@ function Main() {
             body: JSON.stringify(new_battle)
         })
             .then(resp => resp.json())
-            .then(newBattleData => setBattle(newBattleData))
             .catch(error => {
                 console.error("Error creating new battle", error)
             })
@@ -123,7 +121,7 @@ function Main() {
             <Routes>
                 <Route
                     path="/"
-                    element={<Home user={user} onLogin={onLogin} onLogout={onLogout} addBattle={createBattle} handleMonsterSelect={handleMonsterSelect} />}
+                    element={<Home user={user} onLogin={onLogin} onLogout={onLogout} handleMonsterSelect={handleMonsterSelect} />}
                 />
                 <Route
                     path="/login"
@@ -135,7 +133,7 @@ function Main() {
                 />
                 <Route
                     path="/battles"
-                    element={<BattlePage user={user} opponent={opponent} battle={battle} updateBattle={completeBattle} monster={monster} />}
+                    element={<BattlePage user={user} opponent={opponent} updateBattle={completeBattle} monster={monster} />}
                 />
                 <Route
                     path="/monsters"

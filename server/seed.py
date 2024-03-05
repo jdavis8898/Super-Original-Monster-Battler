@@ -130,23 +130,34 @@ def create_moves():
     m1 = Move(
         name="Fire Throw",
         type="Fire",
-        damage = 4
+        damage=7,
+        accuracy=.1
     )
     moves.append(m1)
 
     m2 = Move(
         name="Water Throw",
         type="Water",
-        damage = 4
+        damage=7,
+        accuracy=.1
     )
     moves.append(m2)
     
     m3 = Move(
         name="Leaf Throw",
         type="Leaf",
-        damage = 4
+        damage=7,
+        accuracy=.1
     )
     moves.append(m3)
+
+    m4 = Move(
+        name="Cut",
+        type="Leaf",
+        damage=3,
+        accuracy=.3
+    )
+    moves.append(m4)
 
     return moves
 
@@ -159,11 +170,23 @@ def create_monster_moves():
     )
     monster_moves.append(mm1)
 
+    mm12 = Monster_Move(
+        monster_id=1,
+        move_id=4
+    )
+    monster_moves.append(mm12)   
+
     mm2 = Monster_Move(
         monster_id=2,
         move_id=2
     )
     monster_moves.append(mm2)
+
+    mm22 = Monster_Move(
+        monster_id=2,
+        move_id=4
+    )
+    monster_moves.append(mm22)
 
     mm3 = Monster_Move(
         monster_id=3,
@@ -171,11 +194,23 @@ def create_monster_moves():
     )
     monster_moves.append(mm3)
 
+    mm32 = Monster_Move(
+        monster_id=3,
+        move_id=4
+    )
+    monster_moves.append(mm32)
+
     mm4 = Monster_Move(
         monster_id=4,
         move_id=1
     )
     monster_moves.append(mm4)
+
+    mm42 = Monster_Move(
+        monster_id=4,
+        move_id=4
+    )
+    monster_moves.append(mm42)
 
     mm5 = Monster_Move(
         monster_id=5,
@@ -183,11 +218,23 @@ def create_monster_moves():
     )
     monster_moves.append(mm5)
 
+    mm52 = Monster_Move(
+        monster_id=5,
+        move_id=4
+    )
+    monster_moves.append(mm52)
+
     mm6 = Monster_Move(
         monster_id=6,
         move_id=1
     )
     monster_moves.append(mm6)
+
+    mm62 = Monster_Move(
+        monster_id=6,
+        move_id=4
+    )
+    monster_moves.append(mm62)
 
     mm7 = Monster_Move(
         monster_id=7,
@@ -195,17 +242,35 @@ def create_monster_moves():
     )
     monster_moves.append(mm7)
 
+    mm72 = Monster_Move(
+        monster_id=7,
+        move_id=4
+    )
+    monster_moves.append(mm72)
+
     mm8 = Monster_Move(
         monster_id=8,
         move_id=1
     )
     monster_moves.append(mm8)
 
+    mm82 = Monster_Move(
+        monster_id=8,
+        move_id=4
+    )
+    monster_moves.append(mm82)
+
     mm9 = Monster_Move(
         monster_id=9,
         move_id=1
     )
     monster_moves.append(mm9)
+
+    mm92 = Monster_Move(
+        monster_id=9,
+        move_id=4
+    )
+    monster_moves.append(mm92)
 
     return monster_moves
 

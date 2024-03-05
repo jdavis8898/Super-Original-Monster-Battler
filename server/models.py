@@ -130,6 +130,7 @@ class Move(db.Model, SerializerMixin):
     name = db.Column(db.String)
     type = db.Column(db.String)
     damage = db.Column(db.Integer)
+    accuracy = db.Column(db.Float)
 
     # Foreign Keys
 

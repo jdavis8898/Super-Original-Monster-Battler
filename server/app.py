@@ -380,7 +380,8 @@ class Moves(Resource):
             new_move = Move(
                 name=form_data["name"],
                 type=form_data["type"],
-                damage=form_data["damage"]
+                damage=form_data["damage"],
+                accuracy=form_data["accuracy"]
             )
             
             db.session.add(new_move)
