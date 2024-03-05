@@ -6,11 +6,15 @@ import MoveDetails from "./MoveDetails"
 function MonsterDetails({ user, updateUser }) {
     const [monster, setMonster] = useState({})
     const { id } = useParams()
+    const [checking, setChecking] = useState(true)
 
     useEffect(() => {
         fetch(`/monsters/${id}`)
             .then(resp => resp.json())
-            .then(monsterData => setMonster(monsterData))
+            .then(monsterData => {
+                setMonster(monsterData)
+                setChecking(false)
+            })
     }, [id])
 
     // function updateMonsterMoves(monster, newMon) {
@@ -65,6 +69,9 @@ function MonsterDetails({ user, updateUser }) {
         }
     }
 
+    if (checking) {
+        return <p>Loading...</p>
+    }
 
     return (
         <div className="monster_detils_container">
@@ -73,9 +80,14 @@ function MonsterDetails({ user, updateUser }) {
             <div className="card_content">
                 <p>Type: {monster.type}</p>
                 <p>Moves:</p>
-                <ul>
-                    {/* {monster.moves.map(move => <MoveDetails key={move.id} move={move} />)} */}
-                </ul>
+                {monster.moves.length ? (
+                    <ul>
+                        {console.log(monster.moves.length)}
+                        {monster.moves.map(move => <MoveDetails key={move.id} move={move} />)}
+                    </ul>
+                ) : (
+                    <p>No Moves to Display!</p>
+                )}
                 <Button variant="primary" type="button" onClick={() => handleClick(monster)}>Add to Team</Button>
             </div>
         </div>

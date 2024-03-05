@@ -12,7 +12,7 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
     const [oppHealth, setOppHealth] = useState(oppMon.health)
 
     const [playSound] = useSound(SOMB_Moves, {
-        Interrupt: true,
+        interrupt: false,
         sprite: {
             "Fire Throw": [1000, 3000],
             "Water Throw": [5000, 2000],
