@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react"
+import React, { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import NavBar from "./NavBar"
 import Login from "./Login"
@@ -111,8 +111,9 @@ function Main() {
             .then(updatedUser => setUser(updatedUser))
     }
 
-    function handleMonsterSelect(monster) {
-        setMonster(monster)
+    function handleMonsterSelect(mon) {
+        setMonster(mon)
+        console.log(mon)
     }
 
     return (

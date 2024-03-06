@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Button from "react-bootstrap/Button"
+import Container from "react-bootstrap/Container"
 import useSound from "use-sound"
 import ResultsScreen from "./ResultsScreen"
 import MoveCard from "./MoveCard"
@@ -12,7 +13,7 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
     const [oppHealth, setOppHealth] = useState(oppMon.health)
 
     const [playSound] = useSound(SOMB_Moves, {
-        interrupt: false,
+        interrupt: true,
         sprite: {
             "Fire Throw": [1000, 3000],
             "Water Throw": [5000, 2000],
@@ -59,30 +60,34 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
     }
 
     return (
-        <>
+        <div className="full_page">
             {health > 0 && oppHealth > 0 ? (
-                <div>
-                    <h3>{user.username} VS {opponent.username}</h3>
-                    <p>{monster.name} VS {oppMon.name}</p>
+                <Container className="battle">
+                    <div>
+                        <h3>{user.username} VS {opponent.username}</h3>
+                        <p>{monster.name} VS {oppMon.name}</p>
+                    </div>
                     <div className="player">
                         <img src={monster.image} />
-                        <p>{health}</p>
+                        <p>Remaining Health: {health}</p>
                         <ul className="user_moves">
                             {monster.moves.map(move => <MoveCard key={move.id} move={move} handleMoveSelect={handleMoveSelect} />)}
                         </ul>
-                        {/* <Button variant="primary" type="button" onClick={() => handleClick(monster)}>Attack</Button> */}
                     </div>
                     <div className="opponent">
                         <img src={oppMon.image} />
-                        <p>{oppHealth}</p>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <p>Remaing Health: {oppHealth}</p>
                     </div>
-                </div>
+                </Container>
             ) : (
                 <div>
                     <ResultsScreen user={user} opponent={opponent} monster={monster} oppMon={oppMon} health={health} oppHealth={oppHealth} />
                 </div>
             )}
-        </>
+        </div>
     )
 }
 

@@ -24,28 +24,27 @@ function ProfilePage({ user, deleteUser, updateUsername }) {
     }
 
     return (
-        <div>
+        <div className="profile_page">
             <h1>Welcome To Your Profile Page {user.username}!</h1>
 
             {editing ? (
                 <Form onSubmit={handleSubmit}>
                     <Form.Label as="h4">Update Username</Form.Label>
 
-                    <Form.Group className="" controlId="formUpdateUsername">
+                    <Form.Group controlId="formUpdateUsername">
                         <Form.Label>New Username: </Form.Label>
                         <Form.Control type="text" placeholder="Enter new username" value={username}
                             onChange={e => setUsername(e.target.value)} />
                     </Form.Group>
-                    <Button variant="primary" type="submit">Submit</Button>
+                    <Button variant="primary" type="submit" className="profile_button">Submit</Button>
                 </Form>
             ) : (
                 <div>
-                    {console.log(monsters)}
                     <h3>Your Team!</h3>
                     <MonstersList monsters={monsters} />
-                    <Button variant="primary" type="button" onClick={() => handleUsernameEdit()}>Update Username</Button>
+                    <Button variant="primary" type="button" className="profile_button" onClick={() => handleUsernameEdit()}>Update Username</Button>
                     <Link to="/login">
-                        <Button variant="primary" type="button" onClick={() => handleClick()}>Delete Account</Button>
+                        <Button variant="primary" type="button" className="bad_button" onClick={() => handleClick()}>Delete Account</Button>
                     </Link>
                 </div>
             )}

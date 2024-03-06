@@ -3,7 +3,7 @@ import React from "react"
 function ResultsScreen({ user, opponent, monster, oppMon, health, oppHealth }) {
 
     return (
-        <>
+        <div className="result">
             {health <= 0 ? (
                 <div>
                     <h3>You Lose</h3>
@@ -14,7 +14,7 @@ function ResultsScreen({ user, opponent, monster, oppMon, health, oppHealth }) {
                 </div>
             )}
             <p>To return to the home screen, please click on "Home" in the top left</p>
-        </>
+        </div>
     )
 }
 

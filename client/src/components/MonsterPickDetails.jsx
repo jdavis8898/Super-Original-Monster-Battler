@@ -3,8 +3,8 @@ import { Link } from "react-router-dom"
 
 function MonsterPickDetails({ monster, handleMonsterSelect }) {
 
-    function handleClick(monster) {
-        handleMonsterSelect(monster)
+    function handleClick(mon) {
+        handleMonsterSelect(mon)
     }
 
     return (
