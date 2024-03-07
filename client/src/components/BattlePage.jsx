@@ -41,15 +41,6 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
         let oppChanceToHit = (Math.floor(Math.random() * 100))
         let playerChanceToHitUpdate = playerChanceToHit + (move.move.accuracy * 60)
         let oppChanceToHitUpdate = oppChanceToHit + (oppMonMove.move.accuracy * 60)
-        console.log("Player % to hit, need 60 or higher")
-        console.log(playerChanceToHit)
-        console.log(move.move.accuracy)
-        console.log(playerChanceToHitUpdate)
-        console.log("Computer % to hit, need 60 or higher")
-        console.log(oppChanceToHit)
-        console.log(oppMonMove.move.accuracy)
-        console.log(oppChanceToHitUpdate)
-
 
         if (playerChanceToHitUpdate >= 60) {
             playSound({ id: move.move.name })
