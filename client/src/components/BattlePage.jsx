@@ -69,17 +69,23 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
                     </div>
                     <div className="player">
                         <img src={monster.image} />
-                        <p>Remaining Health: {health}</p>
-                        <ul className="user_moves">
+                        <div className="player_health">
+                            <p>Remaining Health: {health}</p>
+                            <progress id="health" value={health} max={monster.health}></progress>
+                        </div>
+                        <p className="user_moves">
                             {monster.moves.map(move => <MoveCard key={move.id} move={move} handleMoveSelect={handleMoveSelect} />)}
-                        </ul>
+                        </p>
                     </div>
                     <div className="opponent">
                         <img src={oppMon.image} />
                         <br></br>
                         <br></br>
                         <br></br>
-                        <p>Remaing Health: {oppHealth}</p>
+                        <div className="opp_health">
+                            <p>Remaing Health: {oppHealth}</p>
+                            <progress id="oppHealth" value={oppHealth} max={oppMon.health}></progress>
+                        </div>
                     </div>
                 </Container>
             ) : (

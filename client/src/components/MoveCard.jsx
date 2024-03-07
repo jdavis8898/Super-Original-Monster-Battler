@@ -9,10 +9,10 @@ function MoveCard({ move, handleMoveSelect }) {
 
     return (
         <Container>
-            <li className="move_card">
+            <div className="move_card">
                 <p>{move.move.name} </p>
                 <button type="button" onClick={() => handleClick()}>Use</button>
-            </li>
+            </div>
         </Container>
     )
 }

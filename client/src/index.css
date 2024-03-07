@@ -103,3 +103,15 @@ header *:hover {
 .result {
   text-align: center;
 }
+
+.opp_health {
+  text-align: center;
+}
+
+.player_health {
+  text-align: center;
+}
+
+.move_card {
+  text-align: center;
+}
