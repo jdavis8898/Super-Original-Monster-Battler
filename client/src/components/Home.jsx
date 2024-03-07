@@ -1,7 +1,6 @@
 import React from "react"
 import Container from "react-bootstrap/Container"
 import Button from "react-bootstrap/Button"
-// import Modal from "react-bootstrap/Modal"
 import { Link } from "react-router-dom"
 import Login from "./Login"
 import Logout from "./Logout"
@@ -10,15 +9,16 @@ import MonsterPick from "./MonsterPick"
 function Home({ user, onLogin, onLogout, handleMonsterSelect, makeOpp }) {
 
     return (
-        <Container>
+        <Container className="main_menu">
             {user ? (
                 <div>
-                    <h1>Super Original</h1>
-                    <h1>Monster Battler</h1>
-                    <div className="menu">
-                        <Button type="button" data-bs-toggle="modal" data-bs-target="#monstersModalCenter">
+                    <h1 className="title">Super Original</h1>
+                    <h1 className="title">Monster Battler</h1>
+                    <Container className="menu">
+                        <Button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#monstersModalCenter">
                             Battle!
                         </Button>
+                        <br></br>
 
                         <div class="modal fade" id="monstersModalCenter" tabindex="-1" role="dialog" aria-labelledby="monstersModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -40,14 +40,20 @@ function Home({ user, onLogin, onLogout, handleMonsterSelect, makeOpp }) {
                         </div>
                         <Link
                             to="/monsters">
-                            <p>View All Monsters</p>
+                            <Button type="button" class="btn btn-outline-info">
+                                View All Monsters
+                            </Button>
+                            <br></br>
                         </Link>
                         <Link
                             to="/profile">
-                            <p>Profile</p>
+                            <Button type="button" class="btn btn-outline-info">
+                                View Profile
+                            </Button>
+                            <br></br>
                         </Link>
                         <Logout onLogout={onLogout} />
-                    </div>
+                    </Container>
                 </div >
             ) : (
                 <div>

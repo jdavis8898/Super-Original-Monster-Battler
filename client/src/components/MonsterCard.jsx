@@ -11,7 +11,6 @@ function MonsterCard({ monster }) {
                     <Link to={`/monsters/${monster.id}`}>
                         <img src={monster.image} />
                     </Link>
-                    <p>{monster.type}</p>
                 </div>
             </li>
         </div>

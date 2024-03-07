@@ -3,9 +3,9 @@
 ## **Short Description**
 The user will be able to pick 1 of 3 monsters to battle another monster!
 ## **Domain Model**
-![Domain Model](https://imgur.com/fdvuG4M.png)
+![Domain Model](https://imgur.com/nTDwq8t.png)
 ## **ERD**
-![ERD](https://imgur.com/hoZ5QTF.png)
+![ERD](https://imgur.com/Z0kRwQy.png)
 ## **Wireframes**
 ****Main Menu****
 ![Main Menu Wireframe](https://imgur.com/PCDZqhE.png)
@@ -28,23 +28,23 @@ D - User
     - Relationships
         - A `User` has many `Monsters` and `Battles`
     - Validations
-        - Must have `name` that is of type string, and `computer` that is of type boolean
+        - Must have `username` that is of type string, and `computer` that is of type boolean
 - Battle
     - Relationships
         - A `Battle` has many `Users`
     - Validations
-        - Must have `user_turn` of type bool and `complete` of type bool
+        - Must have `complete` of type bool
 - Monster
     - Relationships
         - A `Monster` has many `Moves`
         - A `Monster` belongs to a `User`
     - Validations
-        - Must have a `name` of type string, `type` of type string, `health` of type integer, and an optional `nickname` of type string
+        - Must have a `name` of type string, `type` of type string, `health` of type integer, `image` of type string, and an optional `nickname` of type string
 - Move
     - Relationships
         - A `Move` has many `Monsters`
     - Validations
-        - Must have a `name` of type string, `damage` of type integer and `type` of type string
+        - Must have a `name` of type string, `damage` of type integer, `accuracy` of type float, and `type` of type string
 
 ## **Controllers**
 API routes
@@ -94,13 +94,30 @@ PATCH /moves/<int:id>
 DELETE /moves/<int:id>
 ```
 
-## **Stretch Goals**
-- Incoprorate sound and/or animation with the moves
-- Make a free roam area
+```
+GET /battle_users
+POST /battle_users
+```
+
+```
+GET /battle_users/<int:id>
+PATCH /battle_users/<int:id>
+DELETE /battle_users/<int:id>
+```
+
+```
+GET /monster_moves
+POST /monster_moves
+```
+
+```
+GET /monster_moves/<int:id>
+PATCH /monster_moves/<int:id>
+DELETE /monster_moves/<int:id>
+```
+
+## **Features to Add Later**
+- Incoprorate animation with the moves
 - Make `type` have an affect on damage
 - Add an additional class `Item` that would have a many-to-many relationship with `User`
-
-## **Timeline**
-- Wednesday (2/21): Have backend done by afternoon
-- Monday (2/26): Have MVP completed by end of day
-- Week of 2/25: Work on stretch goals
+- Make a free roam area

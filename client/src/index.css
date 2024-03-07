@@ -1,7 +1,105 @@
 :root {
   --bg: #282c34;
   --header: #fff;
-  --link: #61dafb;
+  --link: #46D4DB;
   --text: hsla(0, 0%, 100%, 0.88);
 }
 
+header * {
+  color: #ffffff;
+  background-color: #1D63BC;
+  border-color: #000000;
+  border: 5px solid;
+}
+
+header *:hover {
+  background-color: #000000
+}
+
+.main_menu {
+  /* display: flex;
+  justify-content: space-between; */
+  background-color: #5D6070;
+  border: 5px solid;
+  border-color: #000000;
+  color: #000000;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+}
+
+.bad_button {
+  padding: .5rem 1rem;
+  background-color: #F00101;
+  border: none;
+  border-radius: 4px;
+  transition: background-color .3s ease;
+  color: #ffffff;
+}
+
+.bad_button:hover {
+  background-color: #000000;
+}
+
+.profile_button {
+  padding: .5rem 1rem;
+  background-color: #1D63BC;
+  border: none;
+  border-radius: 4px;
+  transition: background-color .3s ease;
+  color: #ffffff;
+}
+
+.profile_button:hover {
+  background-color: #000000;
+}
+
+.profile_page {
+  text-align: center;
+}
+
+.card {
+  color: #ffffff;
+  background-color: #5D6070;
+  text-align: center;
+  transition: background-color .3s ease;
+}
+
+.card:hover {
+  background-color: #000000;
+}
+
+.battle {
+  text-align: center;
+  vertical-align: top;
+  color: #ffffff;
+  background-color: #282c34;
+}
+
+.player {
+  text-align: left;
+  vertical-align: top;
+  float: left;
+  background-color: #282c34;
+  border: 5px solid;
+  border-color: #000000;
+}
+
+.move_card {
+  text-align: left;
+}
+
+.opponent {
+  text-align: right;
+  vertical-align: top;
+  float: right;
+  background-color: #282c34;
+  border: 5px solid;
+  border-color: #000000;
+}
+
+.result {
+  text-align: center;
+}

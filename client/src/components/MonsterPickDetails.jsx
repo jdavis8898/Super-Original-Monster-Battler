@@ -3,9 +3,8 @@ import { Link } from "react-router-dom"
 
 function MonsterPickDetails({ monster, handleMonsterSelect, makeOpp }) {
 
-    function handleClick(monster) {
-        handleMonsterSelect(monster)
-        makeOpp()
+    function handleClick(mon) {
+        handleMonsterSelect(mon)
     }
 
     return (

@@ -12,9 +12,7 @@ function Logout({ onLogout }) {
     }
 
     return (
-        <Container>
-            <Button onClick={handleLogout}>Logout</Button>
-        </Container>
+        <Button onClick={handleLogout} className="bad_button">Logout</Button>
     )
 }
 

@@ -1,9 +1,10 @@
 import React, { useState, Suspense } from "react"
 import Button from "react-bootstrap/Button"
+import Container from "react-bootstrap/Container"
 import useSound from "use-sound"
 import ResultsScreen from "./ResultsScreen"
 import MoveCard from "./MoveCard"
-import TestSound from "./sounds/TestSound.wav"
+import SOMB_Moves from "../sounds/SOMB_Moves.mp3"
 
 function BattlePage({ user, opponent, battle, updateBattle, monster }) {
     const oppMon = opponent.monsters[0]
@@ -11,7 +12,15 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
     const [health, setHealth] = useState(monster.health)
     const [oppHealth, setOppHealth] = useState(oppMon.health)
 
-    const [playSound, { stop }] = useSound(TestSound)
+    const [playSound] = useSound(SOMB_Moves, {
+        interrupt: true,
+        sprite: {
+            "Fire Throw": [1000, 3000],
+            "Water Throw": [5000, 2000],
+            "Leaf Throw": [9000, 2000],
+            "Cut": [13000, 2000]
+        }
+    })
 
     function handleMoveSelect(move) {
         console.log(oppMon)
@@ -37,7 +46,7 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
 
 
         if (playerChanceToHitUpdate >= 60) {
-            playSound()
+            playSound({ id: move.move.name })
             setOppHealth(new_opp_health)
         }
 
@@ -51,32 +60,34 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
     }
 
     return (
-        <>
+        <div className="full_page">
             {health > 0 && oppHealth > 0 ? (
-                <div>
-                    <h3>{user.username} VS {opponent.username}</h3>
-                    <p>{monster.name} VS {oppMon.name}</p>
+                <Container className="battle">
+                    <div>
+                        <h3>{user.username} VS {opponent.username}</h3>
+                        <p>{monster.name} VS {oppMon.name}</p>
+                    </div>
                     <div className="player">
                         <img src={monster.image} />
-                        <p>{health}</p>
-                        <Suspense fallback={<p>loading...</p>}>
-                            <ul className="user_moves">
-                                {/* {monster.moves.map(move => <MoveCard key={move.id} move={move} handleMoveSelect={handleMoveSelect} />)} */}
-                            </ul>
-                        </Suspense>
-                        {/* <Button variant="primary" type="button" onClick={() => handleClick(monster)}>Attack</Button> */}
+                        <p>Remaining Health: {health}</p>
+                        <ul className="user_moves">
+                            {monster.moves.map(move => <MoveCard key={move.id} move={move} handleMoveSelect={handleMoveSelect} />)}
+                        </ul>
                     </div>
                     <div className="opponent">
                         <img src={oppMon.image} />
-                        <p>{oppHealth}</p>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <p>Remaing Health: {oppHealth}</p>
                     </div>
-                </div>
+                </Container>
             ) : (
                 <div>
                     <ResultsScreen user={user} opponent={opponent} monster={monster} oppMon={oppMon} health={health} oppHealth={oppHealth} />
                 </div>
             )}
-        </>
+        </div>
     )
 }
 
