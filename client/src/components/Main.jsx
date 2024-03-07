@@ -122,7 +122,7 @@ function Main() {
             <Routes>
                 <Route
                     path="/"
-                    element={<Home user={user} onLogin={onLogin} onLogout={onLogout} handleMonsterSelect={handleMonsterSelect} makeOpp={makeOpp} />}
+                    element={<Home user={user} onLogin={onLogin} onLogout={onLogout} handleMonsterSelect={handleMonsterSelect} />}
                 />
                 <Route
                     path="/login"
