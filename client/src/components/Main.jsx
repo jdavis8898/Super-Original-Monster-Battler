@@ -45,10 +45,6 @@ function Main() {
             })
     }, [])
 
-    function makeOpp() {
-        setOpponent(filteredUsers[randomInt(filteredUsers.length)])
-    }
-
     function onLogin(user) {
         setUser(user)
     }
