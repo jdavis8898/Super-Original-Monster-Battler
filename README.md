@@ -16,7 +16,7 @@ The user will be able to pick 1 of 3 monsters to battle another monster!
 ****Monster Details Page****
 ![Monster Details Page Wireframe](https://imgur.com/6uUYLDI.png)
 ## **React Components Tree**
-![React Components Tree](https://imgur.com/NM04eQk.png)
+![React Components Tree](https://imgur.com/uUI3YsE.png)
 ## **MVP**
 C - User, Battle, Monster\
 R - User, Monster, Move\

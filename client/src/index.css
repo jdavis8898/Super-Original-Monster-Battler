@@ -115,3 +115,17 @@ header *:hover {
 .move_card {
   text-align: center;
 }
+
+.monster_details_container {
+  color: #ffffff;
+  background-color: #282c34;
+}
+
+.details_picture {
+  float: left;
+}
+
+.card_content {
+  display: inline-block;
+  text-align: center;
+}

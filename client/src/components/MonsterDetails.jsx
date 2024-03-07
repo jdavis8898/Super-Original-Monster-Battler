@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Button from "react-bootstrap/Button"
+import Container from "react-bootstrap/Container"
 import MoveDetails from "./MoveDetails"
 
 function MonsterDetails({ user, updateUser }) {
@@ -76,23 +77,22 @@ function MonsterDetails({ user, updateUser }) {
     }
 
     return (
-        <div className="monster_detils_container">
+        <Container className="monster_details_container">
             <h1>{monster.name}</h1>
-            <img src={monster.image} />
+            <img className="details_picture" src={monster.image} />
             <div className="card_content">
                 <p>Type: {monster.type}</p>
                 <p>Moves:</p>
                 {monster.moves.length ? (
-                    <ul>
-                        {console.log(monster.moves.length)}
+                    <p>
                         {monster.moves.map(move => <MoveDetails key={move.id} move={move} />)}
-                    </ul>
+                    </p>
                 ) : (
                     <p>No Moves to Display!</p>
                 )}
-                <Button variant="primary" type="button" onClick={() => handleClick(monster)}>Add to Team</Button>
+                <Button className="details_button" variant="primary" type="button" onClick={() => handleClick(monster)}>Add to Team</Button>
             </div>
-        </div>
+        </Container>
     )
 }
 

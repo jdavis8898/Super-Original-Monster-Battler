@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import MonstersList from "./MonstersList"
-import MonsterCard from "./MonsterCard"
 
 function ProfilePage({ user, deleteUser, updateUsername }) {
     const [username, setUsername] = useState("")

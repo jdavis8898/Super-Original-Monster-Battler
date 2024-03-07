@@ -4,10 +4,11 @@ function MoveDetails({ move }) {
 
     return (
         <div>
-            <li>Name: {move.move.name}</li>
-            <ul>Type: {move.move.type}</ul>
-            <ul>Damage: {move.move.damage}</ul>
-            <ul>Accuracy Modifier: {move.move.accuracy}</ul>
+            <p>Name: {move.move.name}</p>
+            <p>Type: {move.move.type}</p>
+            <p>Damage: {move.move.damage}</p>
+            <p>Accuracy Modifier: {move.move.accuracy}</p>
+            <br></br>
         </div>
     )
 }
