@@ -13,7 +13,6 @@ function Main() {
     const [user, setUser] = useState(null)
     const [opponent, setOpponent] = useState({})
     const [monster, setMonster] = useState({})
-    const [filteredUsers, setFilteredUsers] = useState([])
 
     useEffect(() => {
         fetch('/check_session')
@@ -27,14 +26,6 @@ function Main() {
             .catch(() => setUser(null))
     }, [])
 
-    useEffect(() => {
-        fetch("/users")
-            .then(resp => resp.json())
-            .then(usersData => {
-                setFilteredUsers(usersData.filter(u => filterComputer(u)))
-            })
-    }, [])
-
     function filterComputer(u) {
         if (u.computer === true) {
             return u
@@ -44,6 +35,15 @@ function Main() {
     function randomInt(x) {
         return Math.floor(Math.random() * x)
     }
+
+    useEffect(() => {
+        fetch("/users")
+            .then(resp => resp.json())
+            .then(usersData => {
+                const filteredUsers = usersData.filter(u => filterComputer(u))
+                setOpponent(filteredUsers[randomInt(filteredUsers.length)])
+            })
+    }, [])
 
     function makeOpp() {
         setOpponent(filteredUsers[randomInt(filteredUsers.length)])
