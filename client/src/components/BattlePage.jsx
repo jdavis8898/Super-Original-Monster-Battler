@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react"
+import React, { useState } from "react"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
 import useSound from "use-sound"
@@ -11,6 +11,11 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
 
     const [health, setHealth] = useState(monster.health)
     const [oppHealth, setOppHealth] = useState(oppMon.health)
+    const [turnSummary, setTurnSummary] = useState(false)
+    const [playerMove, setPlayerMove] = useState({})
+    const [oppMove, setOppMove] = useState({})
+    const [playerHit, setPlayerHit] = useState(false)
+    const [oppHit, setOppHit] = useState(false)
 
     const [playSound] = useSound(SOMB_Moves, {
         interrupt: true,
@@ -23,10 +28,11 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
     })
 
     function handleMoveSelect(move) {
-        console.log(oppMon)
         let randomNum = Math.floor(Math.random() * 2)
         const oppMonMove = oppMon.moves[randomNum]
-        console.log(oppMonMove)
+
+        setPlayerMove(move)
+        setOppMove(oppMonMove)
 
         const new_health = parseInt(health) - parseInt(oppMonMove.move.damage)
         const new_opp_health = parseInt(oppHealth) - parseInt(move.move.damage)
@@ -48,15 +54,31 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
         if (playerChanceToHitUpdate >= 60) {
             playSound({ id: move.move.name })
             setOppHealth(new_opp_health)
+            setOppHit(true)
+        }
+
+        else if (playerChanceToHitUpdate < 60) {
+            setOppHit(false)
         }
 
         if (oppChanceToHitUpdate >= 60) {
             setHealth(new_health)
+            setPlayerHit(true)
+        }
+
+        else if (oppChanceToHitUpdate < 60) {
+            setPlayerHit(false)
         }
 
         if ((new_health <= 0) || (new_opp_health <= 0)) {
             // updateBattle(battle.id)
         }
+
+        setTurnSummary(true)
+    }
+
+    function handleClick() {
+        setTurnSummary(false)
     }
 
     return (
@@ -87,6 +109,69 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
                             <progress id="oppHealth" value={oppHealth} max={oppMon.health}></progress>
                         </div>
                     </div>
+                    {turnSummary ? (
+                        <Container className="turn_summary">
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <p>
+                                {user.username}'s {monster.name} used {playerMove.move.name} and it {oppHit ? ("hit!") : ("missed.")}
+                            </p>
+                            <p>
+                                {opponent.username}'s {oppMon.name} used {oppMove.move.name} and it {playerHit ? ("hit!") : ("missed.")}
+                            </p>
+                            <Button type="button" class="btn btn-dark" onClick={() => handleClick()}>Close</Button>
+                        </Container>
+                    ) : (
+                        <div>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <p>Turn in Progress...</p>
+                        </div>
+                    )}
                 </Container>
             ) : (
                 <div>

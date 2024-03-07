@@ -84,7 +84,7 @@ header *:hover {
   float: left;
   background-color: #282c34;
   border: 5px solid;
-  border-color: #000000;
+  border-color: #1D63BC;
 }
 
 .move_card {
@@ -97,7 +97,7 @@ header *:hover {
   float: right;
   background-color: #282c34;
   border: 5px solid;
-  border-color: #000000;
+  border-color: #1D63BC;
 }
 
 .result {
