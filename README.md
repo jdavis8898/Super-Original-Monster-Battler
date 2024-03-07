@@ -116,13 +116,8 @@ PATCH /monster_moves/<int:id>
 DELETE /monster_moves/<int:id>
 ```
 
-## **Stretch Goals**
-- Incoprorate sound and/or animation with the moves
-- Make a free roam area
+## **Features to Add Later**
+- Incoprorate animation with the moves
 - Make `type` have an affect on damage
 - Add an additional class `Item` that would have a many-to-many relationship with `User`
-
-## **Timeline**
-- Wednesday (2/21): Have backend done by afternoon
-- Monday (2/26): Have MVP completed by end of day
-- Week of 2/25: Work on stretch goals
+- Make a free roam area
