@@ -102,30 +102,6 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
                     </div>
                     {turnSummary ? (
                         <Container className="turn_summary">
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
                             <p>
                                 {user.username}'s {monster.name} used {playerMove.move.name} and it {oppHit ? ("hit!") : ("missed.")}
                             </p>
@@ -136,30 +112,6 @@ function BattlePage({ user, opponent, battle, updateBattle, monster }) {
                         </Container>
                     ) : (
                         <div>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <br></br>
                             <p>Turn in Progress...</p>
                         </div>
                     )}
